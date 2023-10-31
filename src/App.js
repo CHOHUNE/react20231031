@@ -1,22 +1,13 @@
 function App() {
-  // jsx 가 js 코드로 변환됨
-  // 따라서 js키워드를 사용할 수 없음
-  // 예를 들어 class를 쓸수 없고 (html 키워드) className
-  //  리액트 키워드로 작성 해야 한다
-
+  const name = "흐임ㄴ";
   return (
     <>
-      {/* class 속성은 className*/}
-      <div className="header">Lorem.</div>
-      {/* for 속성은 htmlFor*/}
-      <div>
-        <label htmlFor="">이름</label>
-        <input type="text" id="nameInput" />
-      </div>
-      <div>
-        <label htmlFor="ageInput"></label>
-        <input type="text" id="ageInput" />
-      </div>
+      <h1> 이름은 {name}</h1>
+      <h1>이름은{"흐임ㄴ"}</h1>
+      <h3>이름은 흐임ㄴ</h3>
+      <div className={"error"}> Lorem ipsum.</div>
+      <div className={"error"}> Lorem ipsum.</div>
+      중괄호 안에 문자를 적나 안적나 무관하다
     </>
   );
 }
