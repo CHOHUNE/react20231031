@@ -1,13 +1,18 @@
 function App() {
-  const name = "흐임ㄴ";
+  const num1 = Math.ceil(Math.random() * 6);
+  const num2 = Math.ceil(Math.random() * 6);
+
+  let messageClassName = "win";
+  let message = "다시던져";
+  if (num1 === num2) {
+    messageClassName = "win";
+    message = "당다당당당처처럼첨첨";
+  }
   return (
     <>
-      <h1> 이름은 {name}</h1>
-      <h1>이름은{"흐임ㄴ"}</h1>
-      <h3>이름은 흐임ㄴ</h3>
-      <div className={"error"}> Lorem ipsum.</div>
-      <div className={"error"}> Lorem ipsum.</div>
-      중괄호 안에 문자를 적나 안적나 무관하다
+      <h1> 1번 주사위 {num1}</h1>
+      <h1> 2번 주사위 {num2}</h1>
+      <h1 className={messageClassName}>{message}</h1>
     </>
   );
 }
