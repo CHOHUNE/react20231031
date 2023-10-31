@@ -1,19 +1,32 @@
 function App() {
-  const num1 = Math.ceil(Math.random() * 6);
-  const num2 = Math.ceil(Math.random() * 6);
+  const myStyle = {
+    color: "blue",
+    backgroundColor: "gold",
+    fontSize: "70px",
+    textAlign: "center",
 
-  let messageClassName = "win";
-  let message = "다시던져";
-  if (num1 === num2) {
-    messageClassName = "win";
-    message = "당다당당당처처럼첨첨";
-  }
+    //   lowerCamelCase로 써야한다.
+    //   (html에서는 하이픈으로연결)
+  };
+
   return (
     <>
-      <h1> 1번 주사위 {num1}</h1>
-      <h1> 2번 주사위 {num2}</h1>
-      <h1 className={messageClassName}>{message}</h1>
+      {/* style 속성은 객체로 주어야 함 */}
+      <div style={myStyle}>제육먹고싶다</div>
+      <hr />
+      <div
+        style={{
+          color: "red",
+          backgroundColor: "yellow",
+          fontSize: "30px",
+          textAlign: "center",
+        }}
+      >
+        기사식당 가고 십다
+      </div>
     </>
+    //  스타일 속성은 객체로 주어야 한다.
+    //   객체에 담아서 쓰거나, 소괄호 안에 쓰거나
   );
 }
 
