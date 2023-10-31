@@ -1,3 +1,22 @@
+function MyComp2() {
+  let name = "료이키텐카이";
+  let age = 10;
+
+  // {}:  JSX 에서 JS 코드 작성하기 위한 기호
+
+  return (
+    <>
+      <h1>hello react</h1>
+      <h1> hello {name}</h1>
+      <h1> {age} yesr2</h1>
+      <h1> {age * 2} yesr2</h1>
+      <h1>{name + "선수"}</h1>
+    </>
+  );
+}
+//  h1 태그 안에 {} 중괄호가 있으면 자바스크립트 코드를 쓰겠다는
+//  선언으로 리액트가 인식한다.
+//  간단한 식도 작성이 가능하다
 function App() {
   //  jsx에서 태그 사용시 반드시 종료 태그를 작성 해야한다. html과 가장 다른 점
   //  빈 요소이면 시작 태그에서 종료
@@ -11,6 +30,7 @@ function App() {
         <br /> Lorem ipsum dolor sit.
       </p>
       <MyComp />
+      <MyComp2 />
     </div>
   );
 }
