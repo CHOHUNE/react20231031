@@ -1,57 +1,23 @@
-function MyComp2() {
-  let name = "료이키텐카이";
-  let age = 10;
-
-  // {}:  JSX 에서 JS 코드 작성하기 위한 기호
-
-  return (
-    <>
-      <h1>hello react</h1>
-      <h1> hello {name}</h1>
-      <h1> {age} yesr2</h1>
-      <h1> {age * 2} yesr2</h1>
-      <h1>{name + "선수"}</h1>
-    </>
-  );
-}
-//  h1 태그 안에 {} 중괄호가 있으면 자바스크립트 코드를 쓰겠다는
-//  선언으로 리액트가 인식한다.
-//  간단한 식도 작성이 가능하다
 function App() {
-  //  jsx에서 태그 사용시 반드시 종료 태그를 작성 해야한다. html과 가장 다른 점
-  //  빈 요소이면 시작 태그에서 종료
+  const number = Math.ceil(Math.random() * 100);
+  const isLarge = number > 50;
+  const isSmall = number <= 50;
 
-  return (
-    <div>
-      <h1> hello react </h1>
-      <h2>hi react</h2>
-      <p>
-        Lorem ipsum dolor.
-        <br /> Lorem ipsum dolor sit.
-      </p>
-      <MyComp />
-      <MyComp2 />
-    </div>
-  );
-}
-
-function MyComp() {
   return (
     <>
-      <h1> HI COMPONENT</h1>
-      <h2>hello</h2>
+      <h1>난수 : {number}</h1>
+      <h1>{number > 50 ? "큰수" : " 작은수"}</h1>
+      <div>{number > 50 ? <BigImage /> : <SmallImage />} </div>
+      <div>{isLarge && <h1> 큰 수다!! </h1>}</div>
+      <div>{isLarge || <h1> 작은 수다!! </h1>}</div>
     </>
   );
-
-  //     return jsx 코드를 작성 가능한데 꼭 하나의 root tag여야한다.
-  //     여러줄이면 ()로 감쌀 것
-  //     만약 root tag가 필요 없다면
-  //     fragment 사용 가능하다. (tag명이 없는 tag)
 }
 
-/* 보다시피 자바코드 안에 html 코드를 쓸수 있는데 jsx 코드라고 일컫는다
- 위의 fucntion 하나를 component라고 하는데 다른 곳에서도 활용이 가능하다.
- 브라우저가 제공하는 태그들은 소문자로 시작하고 직접 만드는 태그들은 대문자로 시작해야 한다.
-built-in component  소문자
-component 명은 대문자*/
+function BigImage() {
+  return <h1>큰 이미지</h1>;
+}
+function SmallImage() {
+  return <h3>작은 이미지</h3>;
+}
 export default App;
