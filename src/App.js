@@ -1,23 +1,24 @@
 function App() {
-  const number = Math.ceil(Math.random() * 100);
-  const isLarge = number > 50;
-  const isSmall = number <= 50;
+  // jsx 가 js 코드로 변환됨
+  // 따라서 js키워드를 사용할 수 없음
+  // 예를 들어 class를 쓸수 없고 (html 키워드) className
+  //  리액트 키워드로 작성 해야 한다
 
   return (
     <>
-      <h1>난수 : {number}</h1>
-      <h1>{number > 50 ? "큰수" : " 작은수"}</h1>
-      <div>{number > 50 ? <BigImage /> : <SmallImage />} </div>
-      <div>{isLarge && <h1> 큰 수다!! </h1>}</div>
-      <div>{isLarge || <h1> 작은 수다!! </h1>}</div>
+      {/* class 속성은 className*/}
+      <div className="header">Lorem.</div>
+      {/* for 속성은 htmlFor*/}
+      <div>
+        <label htmlFor="">이름</label>
+        <input type="text" id="nameInput" />
+      </div>
+      <div>
+        <label htmlFor="ageInput"></label>
+        <input type="text" id="ageInput" />
+      </div>
     </>
   );
 }
 
-function BigImage() {
-  return <h1>큰 이미지</h1>;
-}
-function SmallImage() {
-  return <h3>작은 이미지</h3>;
-}
 export default App;
