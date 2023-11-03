@@ -1,21 +1,20 @@
-import { Box, Flex } from "@chakra-ui/react";
-
-function App() {
+function MyComp({ text, address, children }) {
   return (
-    <Flex
-      w={"100%"}
-      h={"100px"}
-      bg={"gray.300"}
-      gap={1}
-      align={"center"}
-      justify={"space-between"}
-    >
-      <Box bg={"gold"}>Lasdasdm.</Box>
-      <Box bg={"red"}>asdasdem.</Box>
-      <Box bg={"blue"}>qqqqqLorem.</Box>
-      <Box bg={"purple"}>Leeemw.</Box>
-      <Box bg={"wine"}>Lfffffm.</Box>
-    </Flex>
+    <>
+      <p>{text}</p>
+      <p>{address}</p>
+      <p>{children}</p>
+    </>
+  );
+}
+
+function App(props) {
+  return (
+    <div>
+      <MyComp text="hello" address="seoul">
+        some contents, 다른 컴포넌트가 있을 수도 있음.
+      </MyComp>
+    </div>
   );
 }
 
