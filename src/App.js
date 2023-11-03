@@ -1,28 +1,34 @@
 import React from "react";
-import { Button, Input } from "@chakra-ui/react";
+import { Button, Center } from "@chakra-ui/react";
 
 function App(props) {
   function handleClick(e) {
-    e.preventDefault();
-    console.log("다른 일을 시킴");
+    // event bubbling 막는 메소드
+    e.stopPropagation();
+    console.log(e.target.className);
   }
-  function handleSubmit(e) {
-    e.preventDefault();
-    //   기본기능취소
-    console.log("다른일시킴 ");
-  }
+
   return (
-    <div>
-      <a href="https://www.naver.com" onClick={handleClick}>
-        네 이 년
-      </a>
-      <div>
-        <form action="https://www.daum.net/search" onSubmit={handleSubmit}>
-          <input type="text" name="q" />
-          <button>검색</button>
-        </form>
-      </div>
-    </div>
+    <Center
+      onClick={handleClick}
+      className="outerBox"
+      w="200px"
+      h="200px"
+      bg="gold"
+    >
+      <Center
+        onClick={handleClick}
+        className="innerBox"
+        w="100px"
+        h="100px"
+        bg="blue"
+      >
+        <Button onClick={handleClick} className="button" colorScheme="yellow">
+          Button
+        </Button>
+      </Center>
+    </Center>
   );
 }
+
 export default App;
