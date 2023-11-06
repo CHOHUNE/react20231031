@@ -1,34 +1,18 @@
-import React from "react";
-import { Button, Center } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 function App(props) {
-  function handleClick(e) {
-    // event bubbling 막는 메소드
-    e.stopPropagation();
-    console.log(e.target.className);
-  }
-
-  return (
-    <Center
-      onClick={handleClick}
-      className="outerBox"
-      w="200px"
-      h="200px"
-      bg="gold"
-    >
-      <Center
-        onClick={handleClick}
-        className="innerBox"
-        w="100px"
-        h="100px"
-        bg="blue"
-      >
-        <Button onClick={handleClick} className="button" colorScheme="yellow">
-          Button
-        </Button>
-      </Center>
-    </Center>
-  );
+  //   HOOK use로 시작하는 함수
+  //   hook은 컴포넌트 상단에 작성해야함
+  //  조건문이나, 반복문 , 중첩된 함수에서는 사용 불가
+  function hanlde() {}
+  //    hook 호출 코드 작성불가
+}
+for (let i = 0; i < 3; i++) {
+  //   hook 호출 코드 작성 불가
+}
+if (true) {
+  //   hook 호출 코드 작성 불가
 }
 
 export default App;
