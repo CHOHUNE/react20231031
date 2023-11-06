@@ -7,8 +7,13 @@ function App(props) {
   const [number, setNumber] = useState(0);
   const [numberObject, setNumberObject] = useState({ number: 0 });
   function handleNumberObjectChange() {
-    numberObject.number = numberObject.number + 1;
-    setNumberObject(numberObject);
+    // // 이렇게 사용하면 리액트가 인식을 잘 못함
+    // numberObject.number = numberObject.number + 1;
+    // setNumberObject(numberObject);
+    //   복사 해서 써야함
+    const newNumberObject = { ...numberObject };
+    newNumberObject.number = newNumberObject.number + 1;
+    setNumberObject(newNumberObject);
   }
   return (
     <div>
