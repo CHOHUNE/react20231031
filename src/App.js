@@ -1,39 +1,52 @@
-import { Input, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
 import { useImmer } from "use-immer";
+import React from "react";
 
-function App() {
-  const [person, updatePerson] = useImmer({
-    name: "son",
-    address: { city: "seoul", country: "korea" },
-  });
+let nextId = 1;
 
-  function handleNameChange(e) {
-    updatePerson((draft) => {
-      draft.name = e.target.value;
+function App(props) {
+  const [items, updateItems] = useImmer([]);
+
+  function handleButtonClick(todo) {
+    updateItems((draft) => {
+      draft.push({ id: nextId++, done: false, text: todo });
     });
   }
 
-  function handleCityChange(e) {
-    updatePerson((draft) => {
-      draft.address.city = e.target.value;
-    });
-  }
-
-  function handleCountryChange(e) {
-    updatePerson((draft) => {
-      draft.address.country = e.target.value;
+  function handleDoneButtonClick(id) {
+    updateItems((draft) => {
+      const itemIndex = draft.findIndex((item) => item.id === id);
+      if (itemIndex !== -1) {
+        draft[itemIndex].done = true;
+      }
     });
   }
 
   return (
     <div>
-      <Input value={person.name} onChange={handleNameChange} />
-      <Input value={person.address.city} onChange={handleCityChange} />
-      <Input value={person.address.country} onChange={handleCountryChange} />
-      <Text>
-        {person.name}은 {person.address.country},{person.address.city}에 산다{" "}
-      </Text>
+      <Button onClick={() => handleButtonClick("제육먹기")}>제육먹기</Button>
+      <Button onClick={() => handleButtonClick("수업 안듣기")}>
+        수업 안듣기
+      </Button>
+      <Button onClick={() => handleButtonClick("닭가슴살먹기")}>
+        {" "}
+        닭가슴살먹기
+      </Button>
+      <Box>
+        <UnorderedList>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              textDecoration={item.done ? "line-through" : "none"}
+            >
+              {item.text}
+              <Button onClick={() => handleDoneButtonClick(item.id)}>
+                완료
+              </Button>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
     </div>
   );
 }
