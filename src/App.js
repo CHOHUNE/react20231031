@@ -1,25 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Text } from "@chakra-ui/react";
+import { Text, Box, Select } from "@chakra-ui/react";
+import axios from "axios";
 
-//  첫 번째 파라메터 (setup): The function with your Effect's logic. 부작용이 있는 함수
-// 여기서 부작용이란 부수적인 추가적 작용이다.
-//  두 번째 파라메터 : setup을 실행시키는 값의 나열 ( Array )
-//  빈 배열일 시 첫 렌더링 때만 실행됨
-//  두 번째 파라메터에 들어갈 수 있는 건 prop,state 의존성을 부여하는 모든 변수.
 function App(props) {
-  const [number, setNumber] = useState(0);
-  const [text, setText] = useState("");
+  const [customerId, setCustomerId] = useState(0);
+  const [customer, setCustomer] = useState({}); // 초기 값은 빈 객체
   useEffect(() => {
-    console.log("effect 함수 실행됨 ");
-  }, [number, text]);
+    axios
+      .get("/api/main1/sub4?id=" + customerId)
+      .then((response) => response.data)
+      .then((data) => setCustomer(data)) // setCustomer가 빈 객체 초기 값으로 들어감
+      .catch((error) => console.log(error))
+      .finally(() => console.log("끝!!"));
+  }, [customerId]);
   return (
     <div>
-      <Button onClick={() => setNumber(number + 1)}>증가</Button>
-      <Text>{number}</Text>
-      {/*  number를 적음으로서 number를 실행할 때 마다 useEffect가 실행됨 */}
-      <Input value={text} onChange={(e) => setText(e.target.value)} />
-      <Text>{text}</Text>
+      <Select
+        placeholder="고객 번호를 선택하세요 "
+        onChange={(e) => setCustomerId(e.target.value)}
+      >
+        {/*option[value=$]{$}*10*/}
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </Select>
+      <Box>
+        <Text>고객이름 :{customer.name}</Text>
+      </Box>
     </div>
   );
 }
+
 export default App;
