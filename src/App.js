@@ -1,61 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button, Checkbox, Text } from "@chakra-ui/react";
+import React from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 
-function MyComp({ color }) {
-  const [number, setNumber] = useState(0);
-
-  useEffect(() => {
-    console.log(color + " : initial render");
-  }, []);
-
-  console.log(color + " : re render");
-
-  return (
-    <Box borderWidth={"10px"} borderColor={color}>
-      <Button onClick={() => setNumber(number + 1)}>증가</Button>
-      <Text>{number}</Text>
-    </Box>
-  );
-}
+const routes = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<Box>home page</Box>} />
+      <Route path="/path1" element={<Box>경로1</Box>} />
+      <Route path="/path2" element={<Box>경로2</Box>} />
+      <Route path="/path3" element={<Box>경로3</Box>} />
+      <Route path="/main1/path1" element={<Box>경로4</Box>} />
+      <Route path="/main1/path2" element={<Box>경로5</Box>} />
+      <Route path="/main2">
+        <Route path="path1" element={<Box>경로6</Box>} />
+        <Route path="path2" element={<Box>경로7</Box>} />
+        <Route path="path3">
+          <Route path="sub1" element={<Box>경로8</Box>} />
+          <Route path="sub2" element={<Box>경로9</Box>} />
+        </Route>
+      </Route>
+    </>,
+  ),
+);
 
 function App(props) {
-  // 부모가 렌더링될 때 자식도 렌더링 됨.
-
-  const [number, setNumber] = useState(0);
-  const [secondToggle, setSecondToggle] = useState(true);
-  const [goldToggle, setGoldToggle] = useState(true);
-
-  console.log("부모 re-render");
-
-  return (
-    <div>
-      <Box>
-        <Text>부모</Text>
-        <Button onClick={() => setNumber(number + 1)}>증가</Button>
-        <Text>{number}</Text>
-        <Checkbox
-          defaultChecked={true}
-          onChange={(e) => setSecondToggle(e.target.checked)}
-        />
-        파란 박스 토글
-        <Checkbox
-          defaultChecked={true}
-          onChange={(e) => setGoldToggle(e.target.checked)}
-        />
-        골드 박스 토글
-      </Box>
-      <Box mt={5}>
-        <Text>자식들</Text>
-        <MyComp color={"red"} />
-
-        {secondToggle && <MyComp color={"blue"} />}
-
-        <Box sx={{ display: goldToggle ? "block" : "none" }}>
-          <MyComp color={"gold"} />
-        </Box>
-      </Box>
-    </div>
-  );
+  return <RouterProvider router={routes} />;
 }
 
 export default App;
